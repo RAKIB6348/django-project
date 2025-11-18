@@ -51,8 +51,14 @@ def user_login(request):
         elif user.user_type == 'Student':
             return HttpResponse("This is a admin Panel")
 
-        # fallback (যদি কিছু না মিলে)
+        messages.error(request, "Invalid User ID or Password.")
         return redirect('login_page')
 
     # GET request
+    return redirect('login_page')
+
+
+
+def user_logout(request):
+    logout(request)
     return redirect('login_page')

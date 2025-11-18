@@ -35,6 +35,16 @@
 
                             <h1>Login</h1>
                             <p class="account-subtitle">Access to our dashboard</p>
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                        <strong>{{ message.tags|capfirst }}!</strong> {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
 
                             <!-- FORM -->
                             <form method="POST" action="{% url 'user_login' %}">
