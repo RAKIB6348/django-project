@@ -2,8 +2,11 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from accounts.models import User
 from accounts.admin_models import AdminProfile
+from django.contrib.auth.decorators import login_required
 
 
+
+#============== admin register ========================
 
 def register_admin(request):
     # POST request এ form submit করলে data আসবে
@@ -75,6 +78,7 @@ def register_admin(request):
 
 
 #======================== admin home dash ==========================
+@login_required
 def admin_dashboard(request):
 
     return render(request, 'admin/home.html')
