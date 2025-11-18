@@ -45,7 +45,7 @@ def user_login(request):
 
         # ===== Redirect based on user_type =====
         if user.user_type == 'Admin':
-            return HttpResponse("This is a admin Panel")
+            return redirect('admin_dashboard')
         elif user.user_type == 'Teacher':
             return HttpResponse("This is a admin Panel")
         elif user.user_type == 'Student':

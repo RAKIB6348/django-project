@@ -70,3 +70,11 @@ def register_admin(request):
         return render(request, 'admin/register.html') 
 
     return render(request, 'admin/register.html')
+
+
+
+
+#======================== admin home dash ==========================
+def admin_dashboard(request):
+
+    return render(request, 'admin/home.html')
