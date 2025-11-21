@@ -15,5 +15,6 @@ urlpatterns = [
 
     # admin register
     path('register/admin/', register_admin, name='register_admin'),
+    path('admin-list/', admin_list_page, name="admin_list_page"),
     path('dashboard/admin/', admin_dashboard, name='admin_dashboard'),
 ]

@@ -75,6 +75,15 @@ def register_admin(request):
     return render(request, 'admin/register.html')
 
 
+#==================== admin list =============================
+def admin_list_page(request):
+
+    admin_data = AdminProfile.objects.all()
+    context = {
+        'admin_data' : admin_data,
+    }
+
+    return render(request, 'admin/admin_list.html', context)
 
 
 #======================== admin home dash ==========================
