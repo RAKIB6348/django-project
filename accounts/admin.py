@@ -5,7 +5,7 @@ from accounts.admin_models import AdminProfile
 # Register your models here.
 class UserAdmin(admin.ModelAdmin):
 
-    list_display = ['username', 'user_id', 'user_type', 'email']
+    list_display = ['username', 'user_id', 'user_type', 'email', 'date_joined']
 
     search_fields = ['username', 'user_id', 'user_type', 'email']
 

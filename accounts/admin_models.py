@@ -16,7 +16,6 @@ class AdminProfile(models.Model):
         User,
         on_delete=models.CASCADE,
         related_name='admin_profile',
-        limit_choices_to={'user_type': 'admin'}
     )
 
     # YYMM1XXXX
