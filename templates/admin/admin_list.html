@@ -1,68 +1,212 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<style>
-table {
-  font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
+  <meta charset="UTF-8">
+  <title>Admin Table List</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-td, th {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align:center;
-}
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --card-bg: #ffffff;
+      --primary: #04AA6D;
+      --primary-dark: #038355;
+      --text-main: #1f2933;
+      --text-muted: #6b7280;
+      --border: #e1e7ef;
+    }
 
-tr:nth-child(even){background-color: #f2f2f2;}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-tr:hover {background-color: #ddd;}
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+    }
 
-th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: center;
-  background-color: #04AA6D;
-  color: white;
-}
-</style>
+    /* FULL WIDTH SECTION */
+    .page-wrapper {
+      width: 100%;
+      padding: 32px;
+    }
+
+    .card {
+      width: 100%;
+      background-color: var(--card-bg);
+      border-radius: 18px;
+      box-shadow: 0 14px 35px rgba(15, 23, 42, 0.12);
+      padding: 28px 30px 34px;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .card-title {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .card-title h1 {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .card-title p {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background-color: var(--primary);
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 500;
+      border: none;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(4, 170, 109, 0.26);
+      transition: 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(4, 170, 109, 0.32);
+    }
+
+    .table-wrapper {
+      margin-top: 10px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      background-color: #ffffff;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 1000px;
+    }
+
+    thead {
+      background: linear-gradient(90deg, #04AA6D, #059669);
+    }
+
+    th, td {
+      padding: 12px 14px;
+      text-align: center;
+      font-size: 14px;
+      border-bottom: 1px solid #edf1f7;
+      white-space: nowrap;
+    }
+
+    th {
+      color: #ffffff;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #f9fafb;
+    }
+
+    tbody tr:hover {
+      background-color: #ecfeff;
+      transition: background-color 0.18s ease;
+    }
+
+    .empty-row td {
+      text-align: center;
+      padding: 20px;
+      font-style: italic;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 768px) {
+      .card {
+        padding: 18px 14px 22px;
+      }
+
+      table {
+        min-width: 700px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <center><caption>Admin Table List</caption>
-</center>
+<div class="page-wrapper">
+  <div class="card">
+    <!-- Header -->
+    <div class="card-header">
+      <div class="card-title">
+        <h1>Admin Table List</h1>
+        <p class="text-muted">List of all registered admins with their basic information.</p>
+      </div>
 
-<table>
-  <tr>
-    <th># ID</th>
-    <th>Username</th>
-    <th>User ID</th>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Gender</th>
-    <th>Email</th>
-    <th>Phone</th>
-    <th>Created At</th>
-  </tr>
+      <a href="{% url 'register_admin' %}" class="btn-primary">
+        <span class="icon">＋</span> Add Admin
+      </a>
+    </div>
 
-  {% for data in admin_data %}
-  <tr>
-    <td>{{forloop.counter}}</td>
-    <td>{{data.username}}</td>
-    <td>{{data.admin_user_id}}</td>
-     <td>{{ data.first_name }}</td>
-    <td>{{ data.last_name }}</td>
-    <td>{{ data.get_gender_display }}</td>
-    <td>{{ data.email }}</td>
-    <td>{{ data.phone }}</td>
-    <td>{{ data.created_at }}</td>
-  </tr>
-  
-  {% endfor %}
-  
-</table>
+    <!-- Table -->
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th># ID</th>
+            <th>Username</th>
+            <th>User ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Gender</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Created At</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if admin_data %}
+            {% for data in admin_data %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ data.username }}</td>
+              <td>{{ data.admin_user_id }}</td>
+              <td>{{ data.first_name }}</td>
+              <td>{{ data.last_name }}</td>
+              <td>{{ data.get_gender_display }}</td>
+              <td>{{ data.email }}</td>
+              <td>{{ data.phone }}</td>
+              <td>{{ data.created_at|date:"M d, Y H:i" }}</td>
+            </tr>
+            {% endfor %}
+          {% else %}
+            <tr class="empty-row">
+              <td colspan="9">No admin records found.</td>
+            </tr>
+          {% endif %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
-
-

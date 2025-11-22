@@ -1,7 +1,6 @@
 from django.urls import path
 from accounts.views import *
 from accounts.admin_views import *
-from accounts.profile_views import *
 
 
 
@@ -22,6 +21,4 @@ urlpatterns = [
     path('dashboard/admin/', admin_dashboard, name='admin_dashboard'),
 
 
-    # profile
-    path('profile/', view_profile_page, name='view_profile_page'),
 ]
