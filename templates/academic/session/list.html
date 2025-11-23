@@ -39,6 +39,16 @@ th {
     <th>Created At</th>
   </tr>
 
+  {% for s in session %}
+  <tr>
+    <td>{{forloop.counter}}</td>
+    <td>{{s.session_name}}</td>
+    <td>{{s.start_date}}</td>
+    <td>{{s.end_date}}</td>
+    <td>{{s.created_at}}</td>
+  </tr>
+  {% endfor %}
+
 </table>
 
 </body>

@@ -38,7 +38,7 @@ input[type=submit]:hover {
 
 <center><h2>Add Session</h2>
 </center>
-<form action="/action_page.php">
+<form action="{% url 'add_session' %}" method="post">
   
   <label for="session_name">Session Name</label>
   <input type="text" id="session_name" name="session_name" placeholder="e.g. 2024-2025">

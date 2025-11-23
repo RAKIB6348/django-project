@@ -45,7 +45,7 @@ input[type=submit]:hover {
 
 <center><h2>Register Class</h2></center>
 
-<form action="/action_page.php">
+<form action="{% url 'add_class' %}" method="post">
   <label for="class_name">Class Name</label>
   <input type="text" id="class_name" name="class_name" placeholder="e.g. 10th Grade.." required>
 

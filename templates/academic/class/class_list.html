@@ -36,6 +36,16 @@ th {
     <th>Class Code</th>
     <th>Created At</th>
   </tr>
+
+  {% for c in class_data %}
+  <tr>
+    <td>{{forloop.counter}}</td>
+    <td>{{c.class_name}}</td>
+    <td>{{c.class_code}}</td>
+    <td>{{c.created_at}}</td>
+  </tr>
+  
+  {% endfor %}
   
 </table>
 

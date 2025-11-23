@@ -36,6 +36,16 @@ th {
     <th>Subject Code</th>
     <th>Created At</th>
   </tr>
+
+  {% for s in subject %}
+  <tr>
+    <td>{{forloop.counter}}</td>
+    <td>{{s.subject_name}}</td>
+    <td>{{s.subject_code}}</td>
+    <td>{{s.created_at}}</td>
+  </tr>
+
+  {% endfor %}
   
 </table>
 
