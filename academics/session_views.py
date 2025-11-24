@@ -23,7 +23,7 @@ def add_session(request):
 
 def session_list(request):
 
-    session = Session.objects,all()
+    session = Session.objects.all()
 
     context = {
         'session' : session,
