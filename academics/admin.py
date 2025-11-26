@@ -1,5 +1,5 @@
 from django.contrib import admin
-from academics.models import SchoolClass, Session, Subject
+from academics.models import SchoolClass, Session, Subject, Section
 
 # Register your models here.
 class SchoolClassAdmin(admin.ModelAdmin):
@@ -32,3 +32,12 @@ class SchoolSubjectAdmin(admin.ModelAdmin):
     search_fields = ['subject_name', 'subject_name']
 
 admin.site.register(Subject, SchoolSubjectAdmin)
+
+
+
+# =================== section =========================
+class SectionAdmin(admin.ModelAdmin):
+    list_display = ['section_name', 'created_at']
+    search_fields = ['section_name']
+
+admin.site.register(Section, SectionAdmin)

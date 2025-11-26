@@ -31,3 +31,13 @@ class Subject(models.Model):
 
     def __str__(self):
         return self.subject_name
+
+
+
+#================== section ====================
+class Section(models.Model):
+    section_name = models.CharField(max_length=10)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.section_name
