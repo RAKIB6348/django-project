@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Student</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: #f4f6fb;
+        }
+
+        .page-wrapper {
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 40px 15px;
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 1200px;
+            background: #ffffff;
+            padding: 25px 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e3e7f0;
+        }
+
+        .form-header {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e3e7f0;
+            padding-bottom: 10px;
+        }
+
+        .form-header h2 {
+            margin: 0;
+            font-size: 24px;
+            color: #222b45;
+        }
+
+        .form-header p {
+            margin: 6px 0 0;
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .section-title {
+            margin: 25px 0 10px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #6b7280;
+        }
+
+        form {
+            width: 100%;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 18px 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-size: 13px;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 4px;
+        }
+
+        label span.required {
+            color: #ef4444;
+            margin-left: 2px;
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        input[type="email"],
+        input[type="date"],
+        input[type="number"],
+        select,
+        textarea {
+            padding: 9px 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.15s ease;
+            background: #f9fafb;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.15);
+            background: #ffffff;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        input[readonly] {
+            background: #e5e7eb;
+            cursor: not-allowed;
+        }
+
+        input[type="file"] {
+            padding: 6px 0;
+            font-size: 13px;
+        }
+
+        .form-actions {
+            margin-top: 25px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+
+        .btn {
+            border: none;
+            border-radius: 999px;
+            padding: 9px 18px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-secondary {
+            background: #e5e7eb;
+            color: #111827;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: #ffffff;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-secondary:hover {
+            background: #d1d5db;
+        }
+
+        @media (max-width: 600px) {
+            .form-container {
+                padding: 18px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrapper">
+    <div class="form-container">
+        <div class="form-header">
+            <h2>Add New Student</h2>
+            <p>Fill in the student admission details below.</p>
+        </div>
+
+        <form action="" method="post" enctype="multipart/form-data">
+            <!-- Django CSRF (if using Django template) -->
+            <!-- {% csrf_token %} -->
+
+            <!-- ========== User & IDs ========== -->
+            <div class="section-title">User & IDs</div>
+            <div class="grid">
+                <div class="form-group">
+                    <label for="user">Student User <span class="required">*</span></label>
+                    <!-- In Django: this will be a select bound to User (user_type=Student) -->
+                    <select name="user" id="user" required>
+                        <option value="">-- Select Student User --</option>
+                        <!-- {% for u in student_users %}<option value="{{ u.id }}">{{ u.username }}</option>{% endfor %} -->
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="student_user_id">Student User ID (Auto)</label>
+                    <input type="text" id="student_user_id" name="student_user_id" readonly placeholder="Auto generated">
+                </div>
+
+                <div class="form-group">
+                    <label for="admission_id">Admission ID (Auto)</label>
+                    <input type="text" id="admission_id" name="admission_id" readonly placeholder="Auto generated">
+                </div>
+            </div>
+
+            <!-- ========== Basic Profile ========== -->
+            <div class="section-title">Basic Profile</div>
+            <div class="grid">
+                <div class="form-group">
+                    <label for="first_name">First Name <span class="required">*</span></label>
+                    <input type="text" id="first_name" name="first_name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="last_name">Last Name <span class="required">*</span></label>
+                    <input type="text" id="last_name" name="last_name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone <span class="required">*</span></label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email (Optional)</label>
+                    <input type="email" id="email" name="email">
+                </div>
+
+                <div class="form-group">
+                    <label for="date_of_birth">Date of Birth</label>
+                    <input type="date" id="date_of_birth" name="date_of_birth">
+                </div>
+
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select id="gender" name="gender">
+                        <option value="">-- Select --</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="blood_group">Blood Group</label>
+                    <select id="blood_group" name="blood_group">
+                        <option value="">-- Select --</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- ========== Academic Information ========== -->
+            <div class="section-title">Academic Information</div>
+            <div class="grid">
+                <div class="form-group">
+                    <label for="class_name">Class <span class="required">*</span></label>
+                    <select id="class_name" name="class_name" required>
+                        <option value="">-- Select Class --</option>
+                        <!-- {% for c in classes %}<option value="{{ c.id }}">{{ c.name }}</option>{% endfor %} -->
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="section">Section</label>
+                    <select id="section" name="section">
+                        <option value="">-- Select Section --</option>
+                        <!-- {% for s in sections %}<option value="{{ s.id }}">{{ s.name }}</option>{% endfor %} -->
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="session">Session <span class="required">*</span></label>
+                    <select id="session" name="session" required>
+                        <option value="">-- Select Session --</option>
+                        <!-- {% for ses in sessions %}<option value="{{ ses.id }}">{{ ses.session_name }}</option>{% endfor %} -->
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="roll_number">Roll Number</label>
+                    <input type="text" id="roll_number" name="roll_number">
+                </div>
+
+                <div class="form-group">
+                    <label for="registration_no">Registration No.</label>
+                    <input type="text" id="registration_no" name="registration_no">
+                </div>
+
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <select id="status" name="status">
+                        <option value="Active">Active</option>
+                        <option value="Leave">Leave</option>
+                        <option value="Suspended">Suspended</option>
+                        <option value="Passed Out">Passed Out</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- ========== Guardian Information ========== -->
+            <div class="section-title">Guardian Information</div>
+            <div class="grid">
+                <div class="form-group">
+                    <label for="father_name">Father's Name</label>
+                    <input type="text" id="father_name" name="father_name">
+                </div>
+
+                <div class="form-group">
+                    <label for="mother_name">Mother's Name</label>
+                    <input type="text" id="mother_name" name="mother_name">
+                </div>
+
+                <div class="form-group">
+                    <label for="guardian_phone">Guardian Phone</label>
+                    <input type="tel" id="guardian_phone" name="guardian_phone">
+                </div>
+
+                <div class="form-group">
+                    <label for="guardian_email">Guardian Email</label>
+                    <input type="email" id="guardian_email" name="guardian_email">
+                </div>
+
+                <div class="form-group">
+                    <label for="guardian_relation">Guardian Relation</label>
+                    <input type="text" id="guardian_relation" name="guardian_relation" placeholder="Father / Mother / Uncle etc.">
+                </div>
+            </div>
+
+            <!-- ========== Address ========== -->
+            <div class="section-title">Address</div>
+            <div class="grid">
+                <div class="form-group full-width">
+                    <label for="address">Full Address</label>
+                    <textarea id="address" name="address"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="city">City/Town</label>
+                    <input type="text" id="city" name="city">
+                </div>
+
+                <div class="form-group">
+                    <label for="district">District</label>
+                    <input type="text" id="district" name="district">
+                </div>
+
+                <div class="form-group">
+                    <label for="postal_code">Postal Code</label>
+                    <input type="text" id="postal_code" name="postal_code">
+                </div>
+
+                <div class="form-group">
+                    <label for="country">Country</label>
+                    <input type="text" id="country" name="country" value="Bangladesh">
+                </div>
+            </div>
+
+            <!-- ========== Documents ========== -->
+            <div class="section-title">Documents</div>
+            <div class="grid">
+                <div class="form-group">
+                    <label for="profile_image">Profile Image</label>
+                    <input type="file" id="profile_image" name="profile_image" accept="image/*">
+                </div>
+
+                <div class="form-group">
+                    <label for="birth_certificate">Birth Certificate</label>
+                    <input type="file" id="birth_certificate" name="birth_certificate">
+                </div>
+
+                <div class="form-group">
+                    <label for="id_card_no">ID Card No.</label>
+                    <input type="text" id="id_card_no" name="id_card_no">
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="form-actions">
+                <button type="reset" class="btn btn-secondary">Reset</button>
+                <button type="submit" class="btn btn-primary">Save Student</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

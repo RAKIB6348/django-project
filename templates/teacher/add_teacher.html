@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Add Teacher — Registration Form</title>
+
+<style>
+    :root {
+        --card-bg: rgba(255,255,255,0.10);
+        --border: rgba(255,255,255,0.32);
+        --accent: #7b5cff;
+        --text-main: #ffffff;
+        --text-muted: #d1d5db;
+        --danger: #ff6b6b;
+    }
+
+    *{ box-sizing:border-box; }
+
+    /* 🔥 New Premium Linear-Gradient Background */
+    body{
+        margin:0;
+        min-height:100vh;
+        background:linear-gradient(135deg,#4f46e5 0%,#312e81 40%,#0f172a 100%);
+        font-family: "Segoe UI",sans-serif;
+        color:var(--text-main);
+        display:flex;
+        justify-content:center;
+        align-items:flex-start;
+        padding:40px 12px;
+    }
+
+    .wrapper{
+        width:100%;
+        max-width:1200px;
+    }
+
+    .form-box{
+        background:var(--card-bg);
+        backdrop-filter:blur(30px);
+        border-radius:18px;
+        padding:28px 30px 34px;
+        border:1px solid var(--border);
+        box-shadow:0 20px 55px rgba(0,0,0,0.45);
+        animation:fadeIn 0.8s ease;
+    }
+
+    @keyframes fadeIn{
+        from{opacity:0;transform:translateY(20px);}
+        to{opacity:1;transform:translateY(0);}
+    }
+
+    h2{
+        margin:0 0 6px;
+        font-size:26px;
+        font-weight:600;
+    }
+    .subtitle{
+        margin-bottom:20px;
+        color:var(--text-muted);
+        font-size:13px;
+    }
+
+    .section-title{
+        margin-top:18px;
+        margin-bottom:8px;
+        font-size:13px;
+        font-weight:600;
+        color:#c7d2fe;
+        text-transform:uppercase;
+        letter-spacing:.12em;
+    }
+
+    form{margin-top:4px;}
+
+    .grid-3{
+        display:grid;
+        grid-template-columns:repeat(3,minmax(0,1fr));
+        gap:16px 22px;
+    }
+
+    @media(max-width:992px){
+        .grid-3{grid-template-columns:repeat(2,1fr);}
+    }
+    @media(max-width:640px){
+        .grid-3{grid-template-columns:1fr;}
+    }
+
+    .form-group{
+        display:flex;
+        flex-direction:column;
+    }
+    .form-group.full{
+        grid-column:1/-1;
+    }
+
+    label{
+        font-size:13px;
+        font-weight:500;
+        margin-bottom:4px;
+    }
+    label span{color:var(--danger);}
+
+    input,select,textarea{
+        padding:10px;
+        border-radius:7px;
+        font-size:14px;
+        background:rgba(255,255,255,0.12);
+        color:#fff;
+        border:1px solid rgba(255,255,255,0.25);
+        backdrop-filter:blur(10px);
+        outline:none;
+        transition:.2s;
+    }
+    input:focus,select:focus,textarea:focus{
+        border-color:var(--accent);
+        box-shadow:0 0 0 2px rgba(123,92,255,0.40);
+    }
+    input::placeholder,textarea::placeholder{
+        color:rgba(255,255,255,0.65);
+    }
+
+    textarea{resize:vertical;min-height:80px;}
+
+    input[type=file]{
+        padding:5px;
+        background:rgba(255,255,255,0.18);
+    }
+
+    .buttons{
+        margin-top:26px;
+        display:flex;
+        justify-content:flex-end;
+        gap:12px;
+    }
+
+    button{
+        padding:10px 22px;
+        font-size:14px;
+        border-radius:8px;
+        border:none;
+        cursor:pointer;
+        transition:.25s;
+    }
+    .reset-btn{
+        background:rgba(255,255,255,0.25);
+        color:white;
+    }
+    .reset-btn:hover{
+        background:rgba(255,255,255,0.40);
+    }
+    .save-btn{
+        background:linear-gradient(135deg,#8a63ff,#5f2deb);
+        color:white;
+        font-weight:600;
+        box-shadow:0 8px 20px rgba(123,92,255,0.45);
+    }
+    .save-btn:hover{
+        transform:translateY(-3px);
+        box-shadow:0 12px 28px rgba(123,92,255,0.65);
+    }
+
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+<div class="form-box">
+
+    <h2>Teacher Registration</h2>
+    <p class="subtitle">Fill the form below to create teacher profile in the system.</p>
+
+    <form action="" method="post" enctype="multipart/form-data">
+        <!-- {% csrf_token %} -->
+
+        <!-- BASIC -->
+        <p class="section-title">Basic Information</p>
+        <div class="grid-3">
+
+            <div class="form-group">
+                <label>User <span>*</span></label>
+                <select name="user" required>
+                    <option value="">Select Teacher User</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Teacher ID</label>
+                <input type="text" name="teacher_id" placeholder="Auto generated" readonly>
+            </div>
+
+            <div class="form-group">
+                <label>Teacher Code</label>
+                <input type="text" name="teacher_code" placeholder="TCH-01">
+            </div>
+
+            <div class="form-group">
+                <label>First Name <span>*</span></label>
+                <input type="text" name="first_name" required>
+            </div>
+
+            <div class="form-group">
+                <label>Last Name <span>*</span></label>
+                <input type="text" name="last_name" required>
+            </div>
+
+            <div class="form-group">
+                <label>Phone <span>*</span></label>
+                <input type="tel" name="phone" required>
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" placeholder="Optional">
+            </div>
+
+            <div class="form-group">
+                <label>Date of Birth</label>
+                <input type="date" name="date_of_birth">
+            </div>
+
+            <div class="form-group">
+                <label>Gender</label>
+                <select name="gender">
+                    <option value="">Select</option>
+                    <option>Male</option><option>Female</option><option>Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Blood Group</label>
+                <input type="text" name="blood_group" placeholder="A+, B-, O+">
+            </div>
+        </div>
+
+
+        <!-- JOB -->
+        <p class="section-title">Job Details</p>
+        <div class="grid-3">
+
+            <div class="form-group">
+                <label>Designation <span>*</span></label>
+                <input type="text" name="designation" required placeholder="Senior Teacher">
+            </div>
+
+            <div class="form-group">
+                <label>Qualification</label>
+                <input type="text" name="qualification">
+            </div>
+
+            <div class="form-group">
+                <label>Experience (Years)</label>
+                <input type="number" name="experience_years" min="0">
+            </div>
+
+            <div class="form-group">
+                <label>Salary</label>
+                <input type="number" step="0.01" name="salary" placeholder="30000.00">
+            </div>
+
+            <div class="form-group">
+                <label>Status</label>
+                <select name="status">
+                    <option value="Active">Active</option>
+                    <option value="On Leave">On Leave</option>
+                    <option value="Resigned">Resigned</option>
+                    <option value="Suspended">Suspended</option>
+                    <option value="Retired">Retired</option>
+                </select>
+            </div>
+        </div>
+
+
+        <!-- ADDRESS -->
+        <p class="section-title">Address</p>
+        <div class="grid-3">
+
+            <div class="form-group full">
+                <label>Full Address</label>
+                <textarea name="address" placeholder="House / Road / Area"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>City</label>
+                <input type="text" name="city">
+            </div>
+
+            <div class="form-group">
+                <label>District</label>
+                <input type="text" name="district">
+            </div>
+
+            <div class="form-group">
+                <label>Postal Code</label>
+                <input type="text" name="postal_code">
+            </div>
+
+            <div class="form-group">
+                <label>Country</label>
+                <input type="text" value="Bangladesh" name="country">
+            </div>
+        </div>
+
+
+        <!-- DOCUMENTS -->
+        <p class="section-title">Documents</p>
+        <div class="grid-3">
+
+            <div class="form-group">
+                <label>Profile Image</label>
+                <input type="file" name="profile_image" accept="image/*">
+            </div>
+
+            <div class="form-group">
+                <label>NID Number</label>
+                <input type="text" name="nid_number">
+            </div>
+
+            <div class="form-group">
+                <label>Certificate File</label>
+                <input type="file" name="certificate_file">
+            </div>
+
+        </div>
+
+
+        <!-- SUBMIT BUTTON -->
+        <div class="buttons">
+            <button type="reset" class="reset-btn">Reset</button>
+            <button type="submit" class="save-btn">Save Teacher</button>
+        </div>
+    </form>
+
+</div>
+</div>
+</body>
+</html>
