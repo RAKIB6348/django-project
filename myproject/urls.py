@@ -13,6 +13,9 @@ urlpatterns = [
     # student urls
     path('student/', include('students.urls')),
 
+    # teacher urls
+    path('teacher/', include('teachers.urls')),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
