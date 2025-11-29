@@ -1,61 +1,124 @@
 <!DOCTYPE html>
-<html>
-<style>
-form {
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
-}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register Class</title>
+  <style>
+    :root {
+      --bg: #f7f7f9;
+      --card: #ffffff;
+      --border: #d1d5db;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --accent: #2563eb;
+    }
 
-label {display: block; font-weight: bold;}
+    * {
+      box-sizing: border-box;
+      font-family: "Inter", "Segoe UI", Tahoma, sans-serif;
+      color: var(--text);
+    }
 
-input[type=text], select {
-  width: 100%;
-  padding: 12px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg);
+      padding: 24px 12px;
+    }
 
-input[type=submit] {
-  width: 100%;
-  background-color: #4CAF50;
-  color: white;
-  padding: 14px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
+    .card {
+      width: min(420px, 96vw);
+      background: var(--card);
+      border-radius: 16px;
+      padding: 32px;
+      border: 1px solid var(--border);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+    }
 
-input[type=submit]:hover {
-  background-color: #45a049;
-}
+    .card h1 {
+      margin: 0 0 6px;
+      font-size: 26px;
+    }
 
-.help-text {
-  font-size: 12px;
-  color: #888;
-  margin-top: -10px;
-  margin-bottom: 10px;
-}
-</style>
+    .card p {
+      margin: 0 0 28px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .field {
+      margin-bottom: 20px;
+    }
+
+    input[type=text] {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 13px 14px;
+      font-size: 15px;
+      background: #fff;
+    }
+
+    input[type=text]:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+
+    .hint {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    button {
+      width: 100%;
+      padding: 13px;
+      border: none;
+      border-radius: 10px;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+  </style>
+</head>
 <body>
+  <section class="card">
+    <h1>Register Class</h1>
+    <p>Provide the class name and its 2-digit code to publish it in the system.</p>
+    <form action="{% url 'add_class' %}" method="post">
+      {% csrf_token %}
+      <div class="field">
+        <label for="class_name">Class Name</label>
+        <input type="text" id="class_name" name="class_name" placeholder="e.g. Grade 10 Science" required>
+      </div>
 
-<center><h2>Register Class</h2></center>
+      <div class="field">
+        <label for="class_code" title="Please enter a 2-digit class code">Class Code</label>
+        <input type="text" id="class_code" name="class_code" placeholder="e.g. 01, 05, 10" required>
+        <small class="hint">Use a 2-digit class code, like 01, 10, etc.</small>
+      </div>
 
-<form action="{% url 'add_class' %}" method="post">
-  <label for="class_name">Class Name</label>
-  <input type="text" id="class_name" name="class_name" placeholder="e.g. 10th Grade.." required>
-
-  <label for="class_code" title="Please enter a 2-digit class code, like 01, 10, etc">Class Code</label>
-  <small>Please enter a 2-digit class code, like 01, 10, etc</small>
-  <input type="text" id="class_code" name="class_code" placeholder="e.g. 01, 05, 10.." required>
-  
-
-  <input type="submit" value="Register Class">
-</form>
-
+      <button type="submit">Register Class</button>
+    </form>
+  </section>
 </body>
 </html>
