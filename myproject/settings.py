@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # ========= custom app ============
     'accounts',
     'academics',
+    'students',
 ]
 
 MIDDLEWARE = [
